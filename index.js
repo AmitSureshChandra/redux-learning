@@ -75,7 +75,11 @@ const logger = store => next => action => {
 
 const store = createStore(combine_reducers, applyMiddleware(logger))
 
+const unsubscribe = store.subscribe(() => {
+    console.log('Store subcribed');
+})
+
 store.dispatch(buyCake());
 store.dispatch(buyIcecream());
 store.dispatch(buyCake());
-// unsubscribe();
+unsubscribe();
