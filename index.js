@@ -7,7 +7,9 @@ const BUY_CAKE = 'BUY_CAKE';
 // state 
 
 const initialState = () => {
-    no_icecream: 10
+    return {
+        no_of_cake: 10
+    }
 }
 
 // action creator
@@ -21,14 +23,14 @@ const buyCake = () => {
 
 // reducer
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState(), action) => {
     switch(action.type){
         case BUY_CAKE:
             return {
                 ...state,
-                no_icecream: initialState.no_icecream - 1
+                no_of_cake: state.no_of_cake - 1
             }
-        default: return initialState
+        default: return state
     }
 }
 
