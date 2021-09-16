@@ -66,20 +66,16 @@ const combineReducers = redux.combineReducers({
     ice_cream: icecream_reducer
 })
 
-const store = redux.createStore(combineReducers)
+const logger = store => next => action => {
+    console.log({action});
+    const result = next(action);
+    console.log({state: store.getState()});
+    return result;
+}
 
-console.log(store.getState());
+const store = redux.createStore(combineReducers, redux.applyMiddleware(logger))
 
 store.dispatch(buyCake());
-
-console.log(store.getState());
-
 store.dispatch(buyIcecream());
-
-console.log(store.getState());
-
 store.dispatch(buyCake());
-
-console.log(store.getState());
-
 // unsubscribe();
