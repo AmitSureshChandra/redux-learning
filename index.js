@@ -1,4 +1,4 @@
-import redux from 'redux'
+import {applyMiddleware, createStore, combineReducers } from 'redux'
 
 // action constants
 
@@ -61,7 +61,7 @@ const icecream_reducer = (state = initialIcecreamState(), action) => {
 
 // redux
 
-const combineReducers = redux.combineReducers({
+const combine_reducers = combineReducers({
     cake: cake_reducer,
     ice_cream: icecream_reducer
 })
@@ -73,7 +73,7 @@ const logger = store => next => action => {
     return result;
 }
 
-const store = redux.createStore(combineReducers, redux.applyMiddleware(logger))
+const store = createStore(combine_reducers, applyMiddleware(logger))
 
 store.dispatch(buyCake());
 store.dispatch(buyIcecream());
